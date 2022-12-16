@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block sec:authorize="hasRole('ROLE_ADMIN')"> <script> location.href = '/sample/admin';</script> </th:block>
+<th:block sec:authorize="hasRole('ROLE_MANAGER')"> <script> location.href = '/sample/manager';</script> </th:block>
+<th:block sec:authorize="hasRole('ROLE_USER')"> <script> location.href = '/sample/manager';</script> </th:block>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1 > 로그인 페이지</h1>
+<form role="form" method="post">
+  <div class="mb-3">
+    <input type="text" id="username" name="username" placeholder="아이디">
+  </div>
+  <div class="mb-3">
+    <input type="password" id="password" name="password" placeholder="비밀번호" >
+  </div>
+  <div class="form-check form-switch">
+    <input type="checkbox" name="remember-me" id="remember-me">
+    <label for="remember-me">자동로그인</label>
+  </div>
+  <div class="text-center">
+    <input type="submit" value="로그인">
+  </div>
+</form>
+<th:block th:if="${param.error!=null}"> <script> alert('아이디 또는 비밀번호를 확인해주세요') </script> </th:block>
+</body>
+</html>
