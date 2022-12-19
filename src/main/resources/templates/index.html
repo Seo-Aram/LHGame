@@ -7,6 +7,8 @@
   </head>
   <body>
     <h1>모험자 창구 시트</h1>
-
+    <div sec:authorize="isAuthenticated()">
+      <a href="/character/setting/1">캐릭터 생성</a>
+    </div>
   </body>
 </html>

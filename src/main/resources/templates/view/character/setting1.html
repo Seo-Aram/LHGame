@@ -3,10 +3,156 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Index</title>
+    <title>캐릭터 세팅</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <style>
+      * {
+        margin: 10px;
+      }
+    </style>
   </head>
   <body>
-    <h1>캐릭터 세팅</h1>
+    <div class="container" style="display: block;">
+      <h1>캐릭터 세팅</h1>
+        <h2>〈모험자〉 제작</h2>
+        <h3>종족, 아키-메인 직업을 선택합니다.</h3>
+        <p>
+          〈모험자〉의 종족과 직업으로 【능력기본치】, 【최대HP】, 【초기 인과력】이 자동 계산됩니다.<br/>
+          <small class="">단, 종족이 「휴먼」일 경우, 【능력기본치】에서 임의로 2개를 골라줍니다.</small><br/>
+          이후 【능력기본치】에 5점의 포인트를 배분할 수 있으며, 【능력기본치】는 7점을 넘어선 안됩니다.<br/>
+          【능력기본치】에서 3으로 나눈 값(나머지 버림)이 【능력치】가 됩니다.<br/><br/>
+        </p>
 
+          <div class="row col-md-7">
+            <table>
+              <tbody>
+              <tr>
+                <td class="col-md-1">종족</td>
+                <td class="col-md-2">
+                  <select class="form-select form-select-sm ">
+                    <option value="default">선택</option>
+                    <option th:each="obj: ${races}" value="${obj.code}">[[${obj.KrName}]]</option>
+                  </select>
+                </td>
+                <td class="col-md-1">
+
+                </td>
+                <td class="col-md-1">최대hp</td>
+                <td class="col-md-1">0</td>
+              </tr>
+              <tr>
+                <td>메인직</td>
+                <td>
+                  <select class="form-select form-select-sm">
+                    <option value="default">선택</option>
+                    <option th:each="obj: ${subClass}" value="${obj.code}">[[${obj.KrName}]]</option>
+                  </select>
+                </td>
+                <td></td>
+                <td>초기인과치</td>
+                <td class="fate_de">0</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row col-md-7">
+            <table class="state">
+              <tbody class="text-center">
+              <tr>
+                <th></th>
+                <th width="15%">str</th>
+                <th width="15%">dex</th>
+                <th width="15%">pow</th>
+                <th width="15%">int</th>
+                <th width="15%">p</th>
+              </tr>
+                <tr class="state_sp">
+                  <td>종족</td>
+                  <td class="str"><input type="button" class="btn btn-outline-secondary btn-sm" value="-" style="display: none;"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+" style="display: none;"></td>
+                  <td class="dex"><input type="button" class="btn btn-outline-secondary btn-sm" value="-" style="display: none;"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+" style="display: none;"></td>
+                  <td class="pow"><input type="button" class="btn btn-outline-secondary btn-sm" value="-" style="display: none;"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+" style="display: none;"></td>
+                  <td class="int"><input type="button" class="btn btn-outline-secondary btn-sm" value="-" style="display: none;"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+" style="display: none;"></td>
+                  <td class="p"><span class="text"> 0 </span></td>
+                </tr>
+                <tr class="state_main">
+                  <td>메인직</td>
+                  <td class="str"><span class="text"> 0 </span></td>
+                  <td class="dex"><span class="text"> 0 </span></td>
+                  <td class="pow"><span class="text"> 0 </span></td>
+                  <td class="int"><span class="text"> 0 </span></td>
+                  <td class="p"><span class="text"> 0 </span></td>
+                </tr>
+                <tr class="state_bonus">
+                  <td>보너스포인트</td>
+                  <td class="str"><input type="button" class="btn btn-outline-secondary btn-sm" value="-"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+"></td>
+                  <td class="dex"><input type="button" class="btn btn-outline-secondary btn-sm" value="-"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+"></td>
+                  <td class="pow"><input type="button" class="btn btn-outline-secondary btn-sm" value="-"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+"></td>
+                  <td class="int"><input type="button" class="btn btn-outline-secondary btn-sm" value="-"><span class="text"> 0 </span><input type="button" class="btn btn-outline-secondary btn-sm" value="+"></td>
+                  <td class="p"><span class="text"> 0 </span></td>
+                </tr>
+                <tr class="state_total">
+                  <td>능력기본치(합계)</td>
+                  <td class="str"><span class="text"> 0 </span></td>
+                  <td class="dex"><span class="text"> 0 </span></td>
+                  <td class="pow"><span class="text"> 0 </span></td>
+                  <td class="int"><span class="text"> 0 </span></td>
+                  <td class="p"><span class="text"> 0 </span></td>
+                </tr>
+                <tr class="state_true">
+                  <td>능력치(능력기본치/3)</td>
+                  <td class="str"><span class="text"> 0 </span></td>
+                  <td class="dex"><span class="text"> 0 </span></td>
+                  <td class="pow"><span class="text"> 0 </span></td>
+                  <td class="int"><span class="text"> 0 </span></td>
+                  <td class="p"><span class="text"> 0 </span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="row col-md-7">
+            <h3>2. 자동 취득 특기의 확인(일부 선택)</h3>
+          </div>
+
+          <div class="row col-md-7">
+            <p>
+              〈모험자〉는 초기 선택에서 3개의 특기를 자동으로 취득하며, 이를 자동 취득 특기라 합니다.<br/>
+              <small>※〈스워지버클러〉, 〈바드〉, 〈서모너〉, 〈인챈터〉의 경우「전투 특기」중 하나는 선택이 가능합니다.</small><br/>
+            </p>
+          </div>
+
+          <div class="row col-md-7">
+          <table class="skill_list top20">
+            <tbody><tr>
+              <td colspan="5">자동습득기술</td>
+            </tr>
+            <tr>
+              <td class="skill_name">기술명</td>
+              <td class="category_1">종별</td>
+              <td class="skill_max_sr">sr</td>
+              <td class="skill_category">태그</td>
+              <td class="category_def">특기사항</td>
+            </tr>
+            </tbody>
+          </table>
+          </div>
+          <div class="row">
+            <form method="post" id="next_data">
+
+              <input type="button" class="next" value="다음" disabled="disabled">
+
+              <input type="hidden" name="sp_hidden" class="sp_hidden">
+              <input type="hidden" name="ark_hidden" class="ark_hidden">
+              <input type="hidden" name="main_hidden" class="main_hidden">
+              <input type="hidden" name="sp_state_hidden" class="sp_state_hidden">
+              <input type="hidden" name="buns_state_hidden" class="buns_state_hidden">
+              <input type="hidden" name="basis_skill_hidden" class="basis_skill_hidden">
+            </form>
+          </div>
+    </div>
   </body>
 </html>
